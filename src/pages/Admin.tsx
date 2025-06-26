@@ -13,6 +13,8 @@ import {
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import AdminLogin from '@/components/AdminLogin';
+import EditDriverDialog from '@/components/EditDriverDialog';
 
 interface Driver {
   id: string;
@@ -29,8 +31,11 @@ interface Driver {
 
 const Admin = () => {
   const { toast } = useToast();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAddDriverOpen, setIsAddDriverOpen] = useState(false);
+  const [editingDriver, setEditingDriver] = useState<Driver | null>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [drivers, setDrivers] = useState<Driver[]>([]);
   const [newDriver, setNewDriver] = useState({
     name: '',
@@ -47,7 +52,7 @@ const Admin = () => {
       {
         id: '1',
         name: 'Jean Dupont',
-        phone: '06 12 34 56 78',
+        phone: '873-6555275',
         email: 'jean.dupont@email.com',
         carBrand: 'Toyota',
         carModel: 'Prius',
@@ -83,6 +88,21 @@ const Admin = () => {
     ];
     setDrivers(sampleDrivers);
   }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleEditDriver = (driver: Driver) => {
+    setEditingDriver(driver);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleSaveDriver = (updatedDriver: Driver) => {
+    setDrivers(drivers.map(driver => 
+      driver.id === updatedDriver.id ? updatedDriver : driver
+    ));
+  };
 
   const handleAddDriver = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,6 +145,10 @@ const Admin = () => {
   const totalProfit = drivers.reduce((sum, driver) => sum + driver.profit, 0);
   const averageRating = drivers.length > 0 ? drivers.reduce((sum, driver) => sum + driver.rating, 0) / drivers.length : 0;
   const totalTrips = drivers.reduce((sum, driver) => sum + driver.trips, 0);
+
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -335,7 +359,7 @@ const Admin = () => {
                             id="phone"
                             value={newDriver.phone}
                             onChange={(e) => setNewDriver({...newDriver, phone: e.target.value})}
-                            placeholder="06 12 34 56 78"
+                            placeholder="873-6555275"
                             required
                           />
                         </div>
@@ -442,7 +466,12 @@ const Admin = () => {
                       </div>
                       
                       <div className="flex space-x-2 mt-6">
-                        <Button variant="outline" size="sm" className="flex-1 border-taxi-yellow text-taxi-yellow hover:bg-taxi-yellow hover:text-taxi-black">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="flex-1 border-taxi-yellow text-taxi-yellow hover:bg-taxi-yellow hover:text-taxi-black"
+                          onClick={() => handleEditDriver(driver)}
+                        >
                           <Edit className="h-4 w-4 mr-1" />
                           Modifier
                         </Button>
@@ -481,7 +510,7 @@ const Admin = () => {
                   
                   <div>
                     <Label htmlFor="companyPhone">Téléphone</Label>
-                    <Input id="companyPhone" defaultValue="01 23 45 67 89" className="mt-1" />
+                    <Input id="companyPhone" defaultValue="873-6555275" className="mt-1" />
                   </div>
                   
                   <div>
@@ -503,6 +532,16 @@ const Admin = () => {
           )}
         </div>
       </div>
+
+      <EditDriverDialog
+        driver={editingDriver}
+        isOpen={isEditDialogOpen}
+        onClose={() => {
+          setIsEditDialogOpen(false);
+          setEditingDriver(null);
+        }}
+        onSave={handleSaveDriver}
+      />
     </div>
   );
 };
