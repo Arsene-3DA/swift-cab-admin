@@ -295,7 +295,7 @@ const Index = () => {
               <h3 className="font-semibold text-lg mb-4 font-poppins">Contact</h3>
               <div className="space-y-2 text-gray-400">
                 <p>📞 873-6555275</p>
-                <p>✉️ contact@taxitchix.com</p>
+                <p>✉️ taxitchix@gmail.com</p>
                 <p>📍 123 Main Street, City, State 12345</p>
               </div>
             </div>
