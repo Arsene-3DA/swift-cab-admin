@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Car, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Car, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, QrCode, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 
@@ -20,10 +20,30 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Create email content
+    const subject = 'New Contact Form Submission from Taxi Tchix Website';
+    const body = `
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Message: ${formData.message}
+
+Sent from: ${window.location.origin}
+Date: ${new Date().toLocaleString()}
+    `;
+    
+    // Create mailto link
+    const mailtoLink = `mailto:taxitchix@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
     toast({
-      title: "Message sent!",
-      description: "We will get back to you as soon as possible.",
+      title: "Email client opened!",
+      description: "Your email client should open with the message ready to send.",
     });
+    
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
 
@@ -31,6 +51,24 @@ const Contact = () => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value
+    });
+  };
+
+  const generateQRCode = () => {
+    const currentUrl = window.location.origin;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(currentUrl)}`;
+    
+    // Create a temporary link to download the QR code
+    const link = document.createElement('a');
+    link.href = qrCodeUrl;
+    link.download = 'taxi-tchix-qrcode.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast({
+      title: "QR Code downloaded!",
+      description: "The QR code for your website has been downloaded.",
     });
   };
 
@@ -163,7 +201,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg text-taxi-black">Address</h3>
-                    <p className="text-gray-600">123 Main Street<br />City, State 12345</p>
+                    <p className="text-gray-600">195 rue de l'atmosphère</p>
                   </div>
                 </div>
 
@@ -176,6 +214,25 @@ const Contact = () => {
                     <p className="text-gray-600">24/7 Service</p>
                     <p className="text-sm text-gray-500">Always available for you</p>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* QR Code Section */}
+            <Card className="taxi-shadow border-0">
+              <CardHeader>
+                <CardTitle className="text-xl font-poppins text-taxi-black">Website QR Code</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center space-y-4">
+                  <div className="taxi-gradient w-32 h-32 rounded-lg flex items-center justify-center mx-auto">
+                    <QrCode className="h-16 w-16 text-taxi-black" />
+                  </div>
+                  <p className="text-gray-600 text-sm">Download QR code to share our website easily</p>
+                  <Button onClick={generateQRCode} className="taxi-gradient text-taxi-black font-semibold">
+                    <Download className="h-4 w-4 mr-2" />
+                    Download QR Code
+                  </Button>
                 </div>
               </CardContent>
             </Card>

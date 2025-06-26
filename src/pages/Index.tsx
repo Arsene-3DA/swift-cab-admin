@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -279,36 +278,48 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-taxi-black text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <footer className="bg-taxi-black text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <div className="flex items-center mb-4">
-                <Car className="h-8 w-8 text-taxi-yellow mr-2" />
-                <span className="font-bold text-xl font-poppins">Taxi_Tchix</span>
+              <div className="flex items-center space-x-2 mb-4">
+                <Car className="h-8 w-8 text-taxi-yellow" />
+                <span className="text-2xl font-bold font-poppins">Taxi_Tchix</span>
               </div>
-              <p className="text-gray-400">
-                Your professional and reliable taxi service, available 24/7.
-              </p>
+              <p className="text-gray-400">Your reliable taxi service for safe and comfortable rides across the city.</p>
             </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg mb-4 font-poppins">Quick Links</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#home" className="hover:text-taxi-yellow transition-colors">Home</a></li>
+                <li><a href="#services" className="hover:text-taxi-yellow transition-colors">Services</a></li>
+                <li><a href="#about" className="hover:text-taxi-yellow transition-colors">About</a></li>
+                <li><Link to="/contact" className="hover:text-taxi-yellow transition-colors">Contact</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-semibold text-lg mb-4 font-poppins">Services</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>City Rides</li>
+                <li>Airport Transfer</li>
+                <li>Corporate Travel</li>
+                <li>24/7 Service</li>
+              </ul>
+            </div>
+            
             <div>
               <h3 className="font-semibold text-lg mb-4 font-poppins">Contact</h3>
               <div className="space-y-2 text-gray-400">
                 <p>📞 873-6555275</p>
                 <p>✉️ taxitchix@gmail.com</p>
-                <p>📍 123 Main Street, City, State 12345</p>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-4 font-poppins">Hours</h3>
-              <div className="space-y-2 text-gray-400">
-                <p>Monday - Sunday</p>
-                <p className="text-taxi-yellow font-semibold">24/7</p>
-                <p>Continuous service</p>
+                <p>📍 195 rue de l'atmosphère</p>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
             <p>&copy; 2024 Taxi_Tchix. All rights reserved.</p>
           </div>
         </div>
