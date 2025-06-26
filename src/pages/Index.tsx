@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -140,7 +141,7 @@ const Index = () => {
                 <Phone className="mr-2 h-5 w-5" />
                 Book Now
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-taxi-black transition-all duration-300 px-8 py-4 text-lg">
+              <Button variant="outline" size="lg" className="border-2 border-taxi-yellow text-taxi-yellow bg-transparent hover:bg-taxi-yellow hover:text-taxi-black transition-all duration-300 px-8 py-4 text-lg font-semibold">
                 Learn More
               </Button>
             </div>
