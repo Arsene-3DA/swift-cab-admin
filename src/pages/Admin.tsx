@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
   Car, Phone, Mail, User, Plus, Edit, Trash2, 
   DollarSign, TrendingUp, Users, Star, 
-  Settings, LogOut, Dashboard, UserCheck 
+  Settings, LogOut, LayoutDashboard, UserCheck 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
@@ -149,7 +148,7 @@ const Admin = () => {
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                <Dashboard className="mr-3 h-5 w-5" />
+                <LayoutDashboard className="mr-3 h-5 w-5" />
                 Dashboard
               </button>
               
