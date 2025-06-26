@@ -20,13 +20,13 @@ const AdminLogin = ({ onLogin }: AdminLoginProps) => {
     if (password === '@@12') {
       onLogin();
       toast({
-        title: "Connexion réussie",
-        description: "Bienvenue dans l'administration.",
+        title: "Login successful",
+        description: "Welcome to the administration panel.",
       });
     } else {
       toast({
-        title: "Erreur",
-        description: "Mot de passe incorrect.",
+        title: "Error",
+        description: "Incorrect password.",
         variant: "destructive"
       });
     }
@@ -40,23 +40,23 @@ const AdminLogin = ({ onLogin }: AdminLoginProps) => {
             <Lock className="h-6 w-6 text-taxi-black" />
           </div>
           <CardTitle className="text-2xl font-poppins">Administration</CardTitle>
-          <p className="text-gray-600">Veuillez entrer le mot de passe</p>
+          <p className="text-gray-600">Please enter the password</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="password">Mot de passe</Label>
+              <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Entrez le mot de passe"
+                placeholder="Enter password"
                 required
               />
             </div>
             <Button type="submit" className="w-full taxi-gradient text-taxi-black font-semibold">
-              Se connecter
+              Login
             </Button>
           </form>
         </CardContent>

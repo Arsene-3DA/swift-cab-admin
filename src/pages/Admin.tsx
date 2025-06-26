@@ -51,9 +51,9 @@ const Admin = () => {
     const sampleDrivers: Driver[] = [
       {
         id: '1',
-        name: 'Jean Dupont',
+        name: 'John Smith',
         phone: '873-6555275',
-        email: 'jean.dupont@email.com',
+        email: 'john.smith@email.com',
         carBrand: 'Toyota',
         carModel: 'Prius',
         photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
@@ -63,9 +63,9 @@ const Admin = () => {
       },
       {
         id: '2',
-        name: 'Marie Martin',
-        phone: '06 98 76 54 32',
-        email: 'marie.martin@email.com',
+        name: 'Maria Johnson',
+        phone: '873-6555276',
+        email: 'maria.johnson@email.com',
         carBrand: 'Renault',
         carModel: 'Scenic',
         photo: 'https://images.unsplash.com/photo-1494790108755-2616b332c3b5?w=150&h=150&fit=crop&crop=face',
@@ -75,9 +75,9 @@ const Admin = () => {
       },
       {
         id: '3',
-        name: 'Pierre Leroy',
-        phone: '06 11 22 33 44',
-        email: 'pierre.leroy@email.com',
+        name: 'Peter Brown',
+        phone: '873-6555277',
+        email: 'peter.brown@email.com',
         carBrand: 'Volkswagen',
         carModel: 'Passat',
         photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
@@ -102,14 +102,15 @@ const Admin = () => {
     setDrivers(drivers.map(driver => 
       driver.id === updatedDriver.id ? updatedDriver : driver
     ));
+    setEditingDriver(null);
   };
 
   const handleAddDriver = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newDriver.name || !newDriver.phone || !newDriver.email || !newDriver.carBrand || !newDriver.carModel) {
       toast({
-        title: "Erreur",
-        description: "Veuillez remplir tous les champs requis.",
+        title: "Error",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -129,16 +130,16 @@ const Admin = () => {
     setIsAddDriverOpen(false);
     
     toast({
-      title: "Chauffeur ajouté !",
-      description: "Le nouveau chauffeur a été ajouté avec succès.",
+      title: "Driver added!",
+      description: "New driver has been successfully added.",
     });
   };
 
   const handleDeleteDriver = (id: string) => {
     setDrivers(drivers.filter(driver => driver.id !== id));
     toast({
-      title: "Chauffeur supprimé",
-      description: "Le chauffeur a été supprimé de la liste.",
+      title: "Driver deleted",
+      description: "Driver has been removed from the list.",
     });
   };
 
@@ -158,7 +159,7 @@ const Admin = () => {
           <div className="p-6">
             <Link to="/" className="flex items-center">
               <Car className="h-8 w-8 text-taxi-yellow mr-2" />
-              <span className="font-bold text-xl font-poppins text-taxi-black">TaxiPro</span>
+              <span className="font-bold text-xl font-poppins text-taxi-black">Taxi_Tchix</span>
             </Link>
           </div>
           
@@ -185,7 +186,7 @@ const Admin = () => {
                 }`}
               >
                 <Users className="mr-3 h-5 w-5" />
-                Chauffeurs
+                Drivers
               </button>
               
               <button
@@ -197,14 +198,14 @@ const Admin = () => {
                 }`}
               >
                 <Settings className="mr-3 h-5 w-5" />
-                Paramètres
+                Settings
               </button>
             </div>
             
             <div className="px-6 mt-8 pt-8 border-t border-gray-200">
               <Link to="/" className="w-full flex items-center px-4 py-3 text-left text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
                 <LogOut className="mr-3 h-5 w-5" />
-                Retour au site
+                Back to website
               </Link>
             </div>
           </nav>
@@ -215,8 +216,8 @@ const Admin = () => {
           {activeTab === 'dashboard' && (
             <div>
               <div className="mb-8">
-                <h1 className="text-3xl font-bold text-taxi-black font-poppins">Dashboard Administrateur</h1>
-                <p className="text-gray-600 mt-2">Vue d'ensemble de votre flotte de taxis</p>
+                <h1 className="text-3xl font-bold text-taxi-black font-poppins">Administrator Dashboard</h1>
+                <p className="text-gray-600 mt-2">Overview of your taxi fleet</p>
               </div>
 
               {/* Stats Cards */}
@@ -225,7 +226,7 @@ const Admin = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Chauffeurs Actifs</p>
+                        <p className="text-sm font-medium text-gray-600">Active Drivers</p>
                         <p className="text-3xl font-bold text-taxi-black">{drivers.length}</p>
                       </div>
                       <div className="taxi-gradient w-12 h-12 rounded-lg flex items-center justify-center">
@@ -239,8 +240,8 @@ const Admin = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Profit Total</p>
-                        <p className="text-3xl font-bold text-taxi-black">{totalProfit.toLocaleString()}€</p>
+                        <p className="text-sm font-medium text-gray-600">Total Profit</p>
+                        <p className="text-3xl font-bold text-taxi-black">${totalProfit.toLocaleString()}</p>
                       </div>
                       <div className="taxi-gradient w-12 h-12 rounded-lg flex items-center justify-center">
                         <DollarSign className="h-6 w-6 text-taxi-black" />
@@ -253,7 +254,7 @@ const Admin = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Note Moyenne</p>
+                        <p className="text-sm font-medium text-gray-600">Average Rating</p>
                         <p className="text-3xl font-bold text-taxi-black">{averageRating.toFixed(1)}/5</p>
                       </div>
                       <div className="taxi-gradient w-12 h-12 rounded-lg flex items-center justify-center">
@@ -267,7 +268,7 @@ const Admin = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm font-medium text-gray-600">Courses Total</p>
+                        <p className="text-sm font-medium text-gray-600">Total Trips</p>
                         <p className="text-3xl font-bold text-taxi-black">{totalTrips}</p>
                       </div>
                       <div className="taxi-gradient w-12 h-12 rounded-lg flex items-center justify-center">
@@ -281,7 +282,7 @@ const Admin = () => {
               {/* Top Performers */}
               <Card className="taxi-shadow border-0">
                 <CardHeader>
-                  <CardTitle className="font-poppins">Meilleurs Chauffeurs</CardTitle>
+                  <CardTitle className="font-poppins">Top Drivers</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -304,11 +305,11 @@ const Admin = () => {
                             </Avatar>
                             <div>
                               <h4 className="font-semibold">{driver.name}</h4>
-                              <p className="text-sm text-gray-600">{driver.trips} courses</p>
+                              <p className="text-sm text-gray-600">{driver.trips} trips</p>
                             </div>
                           </div>
                           <div className="text-right">
-                            <p className="font-bold text-lg">{driver.profit.toLocaleString()}€</p>
+                            <p className="font-bold text-lg">${driver.profit.toLocaleString()}</p>
                             <div className="flex items-center">
                               <Star className="h-4 w-4 text-taxi-yellow fill-current" />
                               <span className="text-sm ml-1">{driver.rating}</span>
@@ -326,35 +327,35 @@ const Admin = () => {
             <div>
               <div className="flex justify-between items-center mb-8">
                 <div>
-                  <h1 className="text-3xl font-bold text-taxi-black font-poppins">Gestion des Chauffeurs</h1>
-                  <p className="text-gray-600 mt-2">Gérer votre équipe de chauffeurs professionnels</p>
+                  <h1 className="text-3xl font-bold text-taxi-black font-poppins">Driver Management</h1>
+                  <p className="text-gray-600 mt-2">Manage your professional driver team</p>
                 </div>
                 
                 <Dialog open={isAddDriverOpen} onOpenChange={setIsAddDriverOpen}>
                   <DialogTrigger asChild>
                     <Button className="taxi-gradient hover:scale-105 transition-all duration-300 text-taxi-black font-semibold">
                       <Plus className="mr-2 h-5 w-5" />
-                      Ajouter un chauffeur
+                      Add driver
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                      <DialogTitle className="font-poppins">Nouveau Chauffeur</DialogTitle>
+                      <DialogTitle className="font-poppins">New Driver</DialogTitle>
                     </DialogHeader>
                     <form onSubmit={handleAddDriver} className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="name">Nom complet *</Label>
+                          <Label htmlFor="name">Full name *</Label>
                           <Input
                             id="name"
                             value={newDriver.name}
                             onChange={(e) => setNewDriver({...newDriver, name: e.target.value})}
-                            placeholder="Jean Dupont"
+                            placeholder="John Smith"
                             required
                           />
                         </div>
                         <div>
-                          <Label htmlFor="phone">Téléphone *</Label>
+                          <Label htmlFor="phone">Phone *</Label>
                           <Input
                             id="phone"
                             value={newDriver.phone}
@@ -372,14 +373,14 @@ const Admin = () => {
                           type="email"
                           value={newDriver.email}
                           onChange={(e) => setNewDriver({...newDriver, email: e.target.value})}
-                          placeholder="chauffeur@email.com"
+                          placeholder="driver@email.com"
                           required
                         />
                       </div>
                       
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="carBrand">Marque *</Label>
+                          <Label htmlFor="carBrand">Brand *</Label>
                           <Input
                             id="carBrand"
                             value={newDriver.carBrand}
@@ -389,7 +390,7 @@ const Admin = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="carModel">Modèle *</Label>
+                          <Label htmlFor="carModel">Model *</Label>
                           <Input
                             id="carModel"
                             value={newDriver.carModel}
@@ -401,7 +402,7 @@ const Admin = () => {
                       </div>
                       
                       <div>
-                        <Label htmlFor="photo">URL Photo (optionnel)</Label>
+                        <Label htmlFor="photo">Photo URL (optional)</Label>
                         <Input
                           id="photo"
                           value={newDriver.photo}
@@ -411,7 +412,7 @@ const Admin = () => {
                       </div>
                       
                       <Button type="submit" className="w-full taxi-gradient text-taxi-black font-semibold">
-                        Ajouter le chauffeur
+                        Add driver
                       </Button>
                     </form>
                   </DialogContent>
@@ -449,7 +450,7 @@ const Admin = () => {
                       
                       <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-200">
                         <div className="text-center">
-                          <p className="text-2xl font-bold text-taxi-black">{driver.profit.toLocaleString()}€</p>
+                          <p className="text-2xl font-bold text-taxi-black">${driver.profit.toLocaleString()}</p>
                           <p className="text-xs text-gray-600">Profit</p>
                         </div>
                         <div className="text-center">
@@ -457,11 +458,11 @@ const Admin = () => {
                             <Star className="h-4 w-4 text-taxi-yellow fill-current" />
                             <span className="text-xl font-bold text-taxi-black ml-1">{driver.rating}</span>
                           </div>
-                          <p className="text-xs text-gray-600">Note</p>
+                          <p className="text-xs text-gray-600">Rating</p>
                         </div>
                         <div className="text-center">
                           <p className="text-2xl font-bold text-taxi-black">{driver.trips}</p>
-                          <p className="text-xs text-gray-600">Courses</p>
+                          <p className="text-xs text-gray-600">Trips</p>
                         </div>
                       </div>
                       
@@ -473,7 +474,7 @@ const Admin = () => {
                           onClick={() => handleEditDriver(driver)}
                         >
                           <Edit className="h-4 w-4 mr-1" />
-                          Modifier
+                          Edit
                         </Button>
                         <Button 
                           variant="outline" 
@@ -494,37 +495,37 @@ const Admin = () => {
           {activeTab === 'settings' && (
             <div>
               <div className="mb-8">
-                <h1 className="text-3xl font-bold text-taxi-black font-poppins">Paramètres</h1>
-                <p className="text-gray-600 mt-2">Configuration de l'application</p>
+                <h1 className="text-3xl font-bold text-taxi-black font-poppins">Settings</h1>
+                <p className="text-gray-600 mt-2">Application configuration</p>
               </div>
 
               <Card className="taxi-shadow border-0 max-w-2xl">
                 <CardHeader>
-                  <CardTitle className="font-poppins">Paramètres de l'entreprise</CardTitle>
+                  <CardTitle className="font-poppins">Company Settings</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
-                    <Label htmlFor="companyName">Nom de l'entreprise</Label>
-                    <Input id="companyName" defaultValue="TaxiPro" className="mt-1" />
+                    <Label htmlFor="companyName">Company Name</Label>
+                    <Input id="companyName" defaultValue="Taxi_Tchix" className="mt-1" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="companyPhone">Téléphone</Label>
+                    <Label htmlFor="companyPhone">Phone</Label>
                     <Input id="companyPhone" defaultValue="873-6555275" className="mt-1" />
                   </div>
                   
                   <div>
                     <Label htmlFor="companyEmail">Email</Label>
-                    <Input id="companyEmail" defaultValue="contact@taxipro.fr" className="mt-1" />
+                    <Input id="companyEmail" defaultValue="contact@taxitchix.com" className="mt-1" />
                   </div>
                   
                   <div>
-                    <Label htmlFor="companyAddress">Adresse</Label>
-                    <Input id="companyAddress" defaultValue="123 Rue de la Paix, 75001 Paris" className="mt-1" />
+                    <Label htmlFor="companyAddress">Address</Label>
+                    <Input id="companyAddress" defaultValue="123 Main Street, City, State 12345" className="mt-1" />
                   </div>
                   
                   <Button className="taxi-gradient text-taxi-black font-semibold">
-                    Sauvegarder les modifications
+                    Save changes
                   </Button>
                 </CardContent>
               </Card>

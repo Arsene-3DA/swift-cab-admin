@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,7 +29,13 @@ interface EditDriverDialogProps {
 
 const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogProps) => {
   const { toast } = useToast();
-  const [editedDriver, setEditedDriver] = useState<Driver | null>(driver);
+  const [editedDriver, setEditedDriver] = useState<Driver | null>(null);
+
+  useEffect(() => {
+    if (driver) {
+      setEditedDriver({ ...driver });
+    }
+  }, [driver]);
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -53,8 +59,8 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
 
     if (!editedDriver.name || !editedDriver.phone || !editedDriver.email || !editedDriver.carBrand || !editedDriver.carModel) {
       toast({
-        title: "Erreur",
-        description: "Veuillez remplir tous les champs requis.",
+        title: "Error",
+        description: "Please fill in all required fields.",
         variant: "destructive"
       });
       return;
@@ -64,8 +70,8 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
     onClose();
     
     toast({
-      title: "Chauffeur modifié !",
-      description: "Les informations ont été mises à jour avec succès.",
+      title: "Driver updated!",
+      description: "Information has been successfully updated.",
     });
   };
 
@@ -75,7 +81,7 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-poppins">Modifier le chauffeur</DialogTitle>
+          <DialogTitle className="font-poppins">Edit Driver</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="text-center">
@@ -99,7 +105,7 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="edit-name">Nom complet *</Label>
+              <Label htmlFor="edit-name">Full Name *</Label>
               <Input
                 id="edit-name"
                 value={editedDriver.name}
@@ -108,7 +114,7 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
               />
             </div>
             <div>
-              <Label htmlFor="edit-phone">Téléphone *</Label>
+              <Label htmlFor="edit-phone">Phone *</Label>
               <Input
                 id="edit-phone"
                 value={editedDriver.phone}
@@ -131,7 +137,7 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
           
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="edit-carBrand">Marque *</Label>
+              <Label htmlFor="edit-carBrand">Brand *</Label>
               <Input
                 id="edit-carBrand"
                 value={editedDriver.carBrand}
@@ -140,7 +146,7 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
               />
             </div>
             <div>
-              <Label htmlFor="edit-carModel">Modèle *</Label>
+              <Label htmlFor="edit-carModel">Model *</Label>
               <Input
                 id="edit-carModel"
                 value={editedDriver.carModel}
@@ -152,10 +158,10 @@ const EditDriverDialog = ({ driver, isOpen, onClose, onSave }: EditDriverDialogP
           
           <div className="flex space-x-2">
             <Button type="button" variant="outline" onClick={onClose} className="flex-1">
-              Annuler
+              Cancel
             </Button>
             <Button type="submit" className="flex-1 taxi-gradient text-taxi-black font-semibold">
-              Enregistrer
+              Save
             </Button>
           </div>
         </form>
