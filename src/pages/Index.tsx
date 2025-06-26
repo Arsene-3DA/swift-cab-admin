@@ -13,40 +13,40 @@ const Index = () => {
   const services = [
     {
       icon: Car,
-      title: "Service Rapide",
-      description: "Arrivée en moins de 5 minutes en moyenne"
+      title: "Fast Service",
+      description: "Average arrival time under 5 minutes"
     },
     {
       icon: Clock,
-      title: "24h/24 - 7j/7",
-      description: "Service disponible à toute heure"
+      title: "24/7 Available",
+      description: "Service available at any hour"
     },
     {
       icon: Shield,
-      title: "Sécurisé",
-      description: "Chauffeurs professionnels certifiés"
+      title: "Secure",
+      description: "Certified professional drivers"
     },
     {
       icon: MapPin,
-      title: "GPS Intégré",
-      description: "Trajet optimal garanti"
+      title: "GPS Integrated",
+      description: "Optimal route guaranteed"
     }
   ];
 
   const testimonials = [
     {
-      name: "Marie Dubois",
-      text: "Service exceptionnel ! Toujours à l'heure et chauffeurs très professionnels.",
+      name: "Marie Johnson",
+      text: "Exceptional service! Always on time and very professional drivers.",
       rating: 5
     },
     {
-      name: "Jean Martin",
-      text: "Je recommande vivement. Très pratique et tarifs compétitifs.",
+      name: "John Martin",
+      text: "I highly recommend it. Very convenient and competitive rates.",
       rating: 5
     },
     {
-      name: "Sophie Leroux",
-      text: "Application facile à utiliser, service de qualité. Mon taxi préféré !",
+      name: "Sophie Smith",
+      text: "Easy to use application, quality service. My favorite taxi!",
       rating: 5
     }
   ];
@@ -81,13 +81,13 @@ const Index = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Car className="h-8 w-8 text-taxi-yellow mr-2" />
-              <span className="font-bold text-xl font-poppins text-taxi-black">TaxiPro</span>
+              <span className="font-bold text-xl font-poppins text-taxi-black">Taxi_Tchix</span>
             </div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a href="#accueil" className="hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Accueil</a>
+                <a href="#home" className="hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Home</a>
                 <a href="#services" className="hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Services</a>
                 <Link to="/contact" className="hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-sm font-medium">Contact</Link>
                 <Link to="/admin" className="bg-taxi-yellow hover:bg-taxi-orange transition-colors px-4 py-2 rounded-md text-sm font-medium text-taxi-black">Admin</Link>
@@ -110,7 +110,7 @@ const Index = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t animate-slide-in-right">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a href="#accueil" className="block hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-base font-medium">Accueil</a>
+              <a href="#home" className="block hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-base font-medium">Home</a>
               <a href="#services" className="block hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-base font-medium">Services</a>
               <Link to="/contact" className="block hover:text-taxi-yellow transition-colors px-3 py-2 rounded-md text-base font-medium">Contact</Link>
               <Link to="/admin" className="block bg-taxi-yellow hover:bg-taxi-orange transition-colors px-3 py-2 rounded-md text-base font-medium text-taxi-black">Admin</Link>
@@ -120,7 +120,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="accueil" className="relative py-20 lg:py-32 overflow-hidden">
+      <section id="home" className="relative py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-taxi-black/80 to-taxi-black/60 z-10"></div>
         <div 
           className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
@@ -130,19 +130,19 @@ const Index = () => {
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in font-poppins">
-              Votre <span className="text-taxi-yellow">Taxi</span> en un clic
+              Your <span className="text-taxi-yellow">Taxi</span> in one click
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto animate-fade-in">
-              Service de taxi professionnel, rapide et sécurisé. 
-              Réservez maintenant et voyagez en toute sérénité.
+              Professional, fast and secure taxi service. 
+              Book now and travel with peace of mind.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
               <Button size="lg" className="taxi-gradient hover:scale-105 transition-all duration-300 text-taxi-black font-semibold px-8 py-4 text-lg">
                 <Phone className="mr-2 h-5 w-5" />
-                Réserver Maintenant
+                Book Now
               </Button>
               <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-taxi-black transition-all duration-300 px-8 py-4 text-lg">
-                En savoir plus
+                Learn More
               </Button>
             </div>
           </div>
@@ -162,10 +162,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-taxi-black mb-4 font-poppins">
-              Nos Services
+              Our Services
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Découvrez pourquoi des milliers de clients nous font confiance chaque jour
+              Discover why thousands of customers trust us every day
             </p>
           </div>
 
@@ -193,15 +193,15 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-taxi-black mb-2 font-poppins">500+</div>
-              <div className="text-taxi-black/80 text-lg">Clients Satisfaits</div>
+              <div className="text-taxi-black/80 text-lg">Satisfied Customers</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-taxi-black mb-2 font-poppins">24/7</div>
-              <div className="text-taxi-black/80 text-lg">Service Disponible</div>
+              <div className="text-taxi-black/80 text-lg">Service Available</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-taxi-black mb-2 font-poppins">50+</div>
-              <div className="text-taxi-black/80 text-lg">Chauffeurs Experts</div>
+              <div className="text-taxi-black/80 text-lg">Expert Drivers</div>
             </div>
           </div>
         </div>
@@ -212,10 +212,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-taxi-black mb-4 font-poppins">
-              Ce que disent nos clients
+              What our customers say
             </h2>
             <p className="text-xl text-gray-600">
-              Témoignages authentiques de nos utilisateurs
+              Authentic testimonials from our users
             </p>
           </div>
 
@@ -259,19 +259,19 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-taxi-black to-gray-900"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-poppins">
-            Prêt à voyager avec nous ?
+            Ready to travel with us?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Rejoignez des centaines de clients satisfaits. Réservez votre course dès maintenant.
+            Join hundreds of satisfied customers. Book your ride now.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="taxi-gradient hover:scale-105 transition-all duration-300 text-taxi-black font-semibold px-8 py-4 text-lg">
               <Phone className="mr-2 h-5 w-5" />
-              01 23 45 67 89
+              873-6555275
             </Button>
             <Link to="/contact">
               <Button variant="outline" size="lg" className="border-taxi-yellow text-taxi-yellow hover:bg-taxi-yellow hover:text-taxi-black transition-all duration-300 px-8 py-4 text-lg">
-                Nous Contacter
+                Contact Us
               </Button>
             </Link>
           </div>
@@ -285,31 +285,31 @@ const Index = () => {
             <div>
               <div className="flex items-center mb-4">
                 <Car className="h-8 w-8 text-taxi-yellow mr-2" />
-                <span className="font-bold text-xl font-poppins">TaxiPro</span>
+                <span className="font-bold text-xl font-poppins">Taxi_Tchix</span>
               </div>
               <p className="text-gray-400">
-                Votre service de taxi professionnel et fiable, disponible 24h/24 et 7j/7.
+                Your professional and reliable taxi service, available 24/7.
               </p>
             </div>
             <div>
               <h3 className="font-semibold text-lg mb-4 font-poppins">Contact</h3>
               <div className="space-y-2 text-gray-400">
-                <p>📞 01 23 45 67 89</p>
-                <p>✉️ contact@taxipro.fr</p>
-                <p>📍 123 Rue de la Paix, 75001 Paris</p>
+                <p>📞 873-6555275</p>
+                <p>✉️ contact@taxitchix.com</p>
+                <p>📍 123 Main Street, City, State 12345</p>
               </div>
             </div>
             <div>
-              <h3 className="font-semibold text-lg mb-4 font-poppins">Horaires</h3>
+              <h3 className="font-semibold text-lg mb-4 font-poppins">Hours</h3>
               <div className="space-y-2 text-gray-400">
-                <p>Lundi - Dimanche</p>
-                <p className="text-taxi-yellow font-semibold">24h/24 - 7j/7</p>
-                <p>Service continu</p>
+                <p>Monday - Sunday</p>
+                <p className="text-taxi-yellow font-semibold">24/7</p>
+                <p>Continuous service</p>
               </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 TaxiPro. Tous droits réservés.</p>
+            <p>&copy; 2024 Taxi_Tchix. All rights reserved.</p>
           </div>
         </div>
       </footer>
