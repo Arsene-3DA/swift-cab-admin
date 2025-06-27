@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -77,6 +76,13 @@ const Index = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Navigation */}
@@ -145,7 +151,12 @@ const Index = () => {
                 <Phone className="mr-2 h-5 w-5" />
                 Réserver Maintenant
               </Button>
-              <Button variant="outline" size="lg" className="border-2 border-yellow-500 text-yellow-500 bg-transparent hover:bg-yellow-500 hover:text-black transition-all duration-300 px-8 py-4 text-lg font-semibold">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-yellow-500 text-yellow-500 bg-transparent hover:bg-yellow-500 hover:text-black transition-all duration-300 px-8 py-4 text-lg font-semibold"
+                onClick={scrollToServices}
+              >
                 Nos Services
               </Button>
             </div>
