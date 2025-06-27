@@ -4,35 +4,54 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Car, Phone, Clock, Star, Users, Shield, MapPin, Menu, X, Plane, Baby, Home, UserCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSelector from '@/components/LanguageSelector';
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const { t } = useLanguage();
 
   const services = [
     {
       icon: Car,
-      title: "Trajets Longue Distance",
-      description: "Transport urbain, inter-villes et inter-provinces avec confort premium",
-      features: ["Transport urbain dans toute la ville", "Déplacements inter-villes", "Voyages inter-provinces"]
+      title: t('services.long_distance.title'),
+      description: t('services.long_distance.description'),
+      features: [
+        t('services.long_distance.feature1'),
+        t('services.long_distance.feature2'),
+        t('services.long_distance.feature3')
+      ]
     },
     {
       icon: Baby,
-      title: "Service Familial",
-      description: "Accompagnement sécurisé pour vos enfants et votre famille",
-      features: ["Récupération d'enfants en garderie", "Accompagnement personnalisé mineurs", "Transport familial sécurisé"]
+      title: t('services.family.title'),
+      description: t('services.family.description'),
+      features: [
+        t('services.family.feature1'),
+        t('services.family.feature2'),
+        t('services.family.feature3')
+      ]
     },
     {
       icon: Plane,
-      title: "Transport Aéroport",
-      description: "Service navette aéroport disponible 24h/24",
-      features: ["Navette aller vers l'aéroport", "Service de récupération", "Disponible 24h/24"]
+      title: t('services.airport.title'),
+      description: t('services.airport.description'),
+      features: [
+        t('services.airport.feature1'),
+        t('services.airport.feature2'),
+        t('services.airport.feature3')
+      ]
     },
     {
       icon: UserCheck,
-      title: "Service Adapté",
-      description: "Solutions personnalisées pour tous vos besoins de transport",
-      features: ["Transport personnes sans permis", "Récupération véhicules", "Chauffeur avec votre voiture"]
+      title: t('services.adapted.title'),
+      description: t('services.adapted.description'),
+      features: [
+        t('services.adapted.feature1'),
+        t('services.adapted.feature2'),
+        t('services.adapted.feature3')
+      ]
     }
   ];
 
@@ -97,15 +116,17 @@ const Index = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <a href="#home" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Accueil</a>
-                <a href="#services" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Services</a>
-                <Link to="/contact" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Contact</Link>
-                <Link to="/admin" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all px-4 py-2 rounded-md text-sm font-medium text-black">Admin</Link>
+                <a href="#home" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">{t('nav.home')}</a>
+                <a href="#services" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">{t('nav.services')}</a>
+                <Link to="/contact" className="text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">{t('nav.contact')}</Link>
+                <Link to="/admin" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all px-4 py-2 rounded-md text-sm font-medium text-black">{t('nav.admin')}</Link>
+                <LanguageSelector />
               </div>
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center space-x-2">
+              <LanguageSelector />
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 rounded-md text-gray-300 hover:text-yellow-500 transition-colors"
@@ -120,10 +141,10 @@ const Index = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-black/95 border-t border-yellow-600/20 animate-slide-in-right">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <a href="#home" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">Accueil</a>
-              <a href="#services" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">Services</a>
-              <Link to="/contact" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">Contact</Link>
-              <Link to="/admin" className="block bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all px-3 py-2 rounded-md text-base font-medium text-black">Admin</Link>
+              <a href="#home" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">{t('nav.home')}</a>
+              <a href="#services" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">{t('nav.services')}</a>
+              <Link to="/contact" className="block text-gray-300 hover:text-yellow-500 transition-colors px-3 py-2 rounded-md text-base font-medium">{t('nav.contact')}</Link>
+              <Link to="/admin" className="block bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 transition-all px-3 py-2 rounded-md text-base font-medium text-black">{t('nav.admin')}</Link>
             </div>
           </div>
         )}
@@ -140,16 +161,15 @@ const Index = () => {
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in font-poppins">
-              Transport <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Premium</span>
+              {t('hero.title').split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">{t('hero.title').split(' ')[1]}</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto animate-fade-in">
-              Services de transport spécialisés : longue distance, familial, aéroport et adapté. 
-              Excellence et confort garantis.
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
               <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-4 text-lg shadow-2xl shadow-yellow-500/25">
                 <Phone className="mr-2 h-5 w-5" />
-                Réserver Maintenant
+                {t('hero.book_now')}
               </Button>
               <Button 
                 variant="outline" 
@@ -157,7 +177,7 @@ const Index = () => {
                 className="border-2 border-yellow-500 text-yellow-500 bg-transparent hover:bg-yellow-500 hover:text-black transition-all duration-300 px-8 py-4 text-lg font-semibold"
                 onClick={scrollToServices}
               >
-                Nos Services
+                {t('hero.our_services')}
               </Button>
             </div>
           </div>
@@ -177,10 +197,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-poppins">
-              Nos Services <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Spécialisés</span>
+              {t('services.title').split(' ').slice(0, 2).join(' ')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">{t('services.title').split(' ').slice(2).join(' ')}</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Des solutions de transport adaptées à tous vos besoins
+              {t('services.subtitle')}
             </p>
           </div>
 
@@ -216,15 +236,15 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-black mb-2 font-poppins">500+</div>
-              <div className="text-black/80 text-lg font-medium">Clients Satisfaits</div>
+              <div className="text-black/80 text-lg font-medium">{t('stats.clients')}</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-black mb-2 font-poppins">24/7</div>
-              <div className="text-black/80 text-lg font-medium">Service Disponible</div>
+              <div className="text-black/80 text-lg font-medium">{t('stats.available')}</div>
             </div>
             <div className="animate-fade-in">
               <div className="text-4xl md:text-5xl font-bold text-black mb-2 font-poppins">50+</div>
-              <div className="text-black/80 text-lg font-medium">Chauffeurs Experts</div>
+              <div className="text-black/80 text-lg font-medium">{t('stats.drivers')}</div>
             </div>
           </div>
         </div>
@@ -235,10 +255,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-poppins">
-              Témoignages <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Clients</span>
+              {t('testimonials.title').split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">{t('testimonials.title').split(' ')[1]}</span>
             </h2>
             <p className="text-xl text-gray-300">
-              L'avis authentique de nos utilisateurs
+              {t('testimonials.subtitle')}
             </p>
           </div>
 
@@ -282,10 +302,10 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black to-gray-900"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 font-poppins">
-            Prêt à voyager avec <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">nous ?</span>
+            {t('cta.title').split(' ').slice(0, -2).join(' ')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">{t('cta.title').split(' ').slice(-2).join(' ')}</span>
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Rejoignez des centaines de clients satisfaits. Réservez votre course maintenant.
+            {t('cta.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-black font-semibold px-8 py-4 text-lg shadow-2xl shadow-yellow-500/25">
@@ -294,7 +314,7 @@ const Index = () => {
             </Button>
             <Link to="/contact">
               <Button variant="outline" size="lg" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition-all duration-300 px-8 py-4 text-lg">
-                Nous Contacter
+                {t('cta.contact')}
               </Button>
             </Link>
           </div>
@@ -310,30 +330,30 @@ const Index = () => {
                 <Car className="h-8 w-8 text-yellow-500" />
                 <span className="text-2xl font-bold font-poppins">Taxi_Tchix</span>
               </div>
-              <p className="text-gray-400">Votre service de taxi premium pour des trajets sûrs et confortables dans toute la région.</p>
+              <p className="text-gray-400">{t('footer.description')}</p>
             </div>
             
             <div>
-              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">Liens Rapides</h3>
+              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">{t('footer.quick_links')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#home" className="hover:text-yellow-500 transition-colors">Accueil</a></li>
-                <li><a href="#services" className="hover:text-yellow-500 transition-colors">Services</a></li>
-                <li><Link to="/contact" className="hover:text-yellow-500 transition-colors">Contact</Link></li>
+                <li><a href="#home" className="hover:text-yellow-500 transition-colors">{t('nav.home')}</a></li>
+                <li><a href="#services" className="hover:text-yellow-500 transition-colors">{t('nav.services')}</a></li>
+                <li><Link to="/contact" className="hover:text-yellow-500 transition-colors">{t('nav.contact')}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">Nos Services</h3>
+              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">{t('footer.our_services')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Trajets Longue Distance</li>
-                <li>Service Familial</li>
-                <li>Transport Aéroport</li>
-                <li>Service Adapté</li>
+                <li>{t('services.long_distance.title')}</li>
+                <li>{t('services.family.title')}</li>
+                <li>{t('services.airport.title')}</li>
+                <li>{t('services.adapted.title')}</li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">Contact</h3>
+              <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">{t('footer.contact')}</h3>
               <div className="space-y-2 text-gray-400">
                 <p>📞 873-6555275</p>
                 <p>✉️ taxitchix@gmail.com</p>
@@ -343,7 +363,7 @@ const Index = () => {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Taxi_Tchix. Tous droits réservés.</p>
+            <p>&copy; 2024 Taxi_Tchix. {t('footer.copyright')}</p>
           </div>
         </div>
       </footer>
