@@ -121,7 +121,7 @@ const Index = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Car className="h-8 w-8 text-yellow-500 mr-2" />
-              <span className="font-bold text-xl font-poppins text-white">Taxi_Tchix</span>
+              <span className="font-bold text-xl font-poppins text-white">Driver_Tchix</span>
             </div>
             
             {/* Desktop Navigation */}
@@ -339,7 +339,7 @@ const Index = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Car className="h-8 w-8 text-yellow-500" />
-                <span className="text-2xl font-bold font-poppins">Taxi_Tchix</span>
+                <span className="text-2xl font-bold font-poppins">Driver_Tchix</span>
               </div>
               <p className="text-gray-400">{t('footer.description')}</p>
             </div>
@@ -402,7 +402,7 @@ const Index = () => {
           </div>
           
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Taxi_Tchix. {t('footer.copyright')}</p>
+            <p>&copy; 2024 Driver_Tchix. {t('footer.copyright')}</p>
           </div>
         </div>
       </footer>
