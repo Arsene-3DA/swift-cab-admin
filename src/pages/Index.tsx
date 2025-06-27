@@ -21,7 +21,8 @@ const Index = () => {
         t('services.long_distance.feature1'),
         t('services.long_distance.feature2'),
         t('services.long_distance.feature3')
-      ]
+      ],
+      id: 'service-long-distance'
     },
     {
       icon: Baby,
@@ -31,7 +32,8 @@ const Index = () => {
         t('services.family.feature1'),
         t('services.family.feature2'),
         t('services.family.feature3')
-      ]
+      ],
+      id: 'service-family'
     },
     {
       icon: Plane,
@@ -41,7 +43,8 @@ const Index = () => {
         t('services.airport.feature1'),
         t('services.airport.feature2'),
         t('services.airport.feature3')
-      ]
+      ],
+      id: 'service-airport'
     },
     {
       icon: UserCheck,
@@ -51,7 +54,8 @@ const Index = () => {
         t('services.adapted.feature1'),
         t('services.adapted.feature2'),
         t('services.adapted.feature3')
-      ]
+      ],
+      id: 'service-adapted'
     }
   ];
 
@@ -99,6 +103,13 @@ const Index = () => {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToService = (serviceId: string) => {
+    const serviceElement = document.getElementById(serviceId);
+    if (serviceElement) {
+      serviceElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -206,7 +217,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover-lift bg-gradient-to-br from-gray-800 to-gray-900 border-yellow-600/20 shadow-2xl shadow-black/50">
+              <Card key={index} id={service.id} className="hover-lift bg-gradient-to-br from-gray-800 to-gray-900 border-yellow-600/20 shadow-2xl shadow-black/50">
                 <CardContent className="p-8">
                   <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                     <service.icon className="h-8 w-8 text-black" />
@@ -345,10 +356,38 @@ const Index = () => {
             <div>
               <h3 className="font-semibold text-lg mb-4 font-poppins text-yellow-500">{t('footer.our_services')}</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>{t('services.long_distance.title')}</li>
-                <li>{t('services.family.title')}</li>
-                <li>{t('services.airport.title')}</li>
-                <li>{t('services.adapted.title')}</li>
+                <li>
+                  <button 
+                    onClick={() => scrollToService('service-long-distance')}
+                    className="hover:text-yellow-500 transition-colors text-left"
+                  >
+                    {t('services.long_distance.title')}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToService('service-family')}
+                    className="hover:text-yellow-500 transition-colors text-left"
+                  >
+                    {t('services.family.title')}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToService('service-airport')}
+                    className="hover:text-yellow-500 transition-colors text-left"
+                  >
+                    {t('services.airport.title')}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => scrollToService('service-adapted')}
+                    className="hover:text-yellow-500 transition-colors text-left"
+                  >
+                    {t('services.adapted.title')}
+                  </button>
+                </li>
               </ul>
             </div>
             
